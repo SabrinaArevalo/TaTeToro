@@ -1,4 +1,4 @@
-package juego;
+package interfaz;
 
 import java.awt.EventQueue;
 
