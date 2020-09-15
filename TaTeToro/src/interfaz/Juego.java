@@ -9,7 +9,7 @@ public class Juego {
 	Jugador jugador1=new Jugador(1);
 	Jugador jugador2=new Jugador(2);
 	
-	//Para hacer
+	//Para hacer.
 	private boolean gano() {
 		int cont=0;
 		//Tiene que verificar si hay tres botones en horizontal, vertical y diagonal
