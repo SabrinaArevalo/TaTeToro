@@ -1,5 +1,6 @@
 package juego;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Jugada {
@@ -14,53 +15,58 @@ public class Jugada {
 	
 	private static boolean esGanadoraHorizontal(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
-			int[] fila=new int[3];
+			ArrayList<Integer> fila=new ArrayList<Integer>();
 			
 			for(int j=0; j<tablero.tamanio(); j++) {
-				fila[i]=tablero.getTablero()[i][j];	
+				fila.add(tablero.getTablero()[i][j]);	
 			}
 			
-			if(Arrays.equals(fila, jugadasGanadoras(tablero, jugador))) return true;
+			if(iguales(fila, jugadasGanadoras(tablero, jugador))) return true;
 		}
 		return false;
 	}
 	
 	private static boolean esGanadoraVertical(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
-			int[] columna=new int[3];
+			ArrayList<Integer> columna=new ArrayList<Integer>();
 			
 			for(int j=0; j<tablero.tamanio(); j++) {
-				columna[i]=tablero.getTablero()[j][i];	
+				columna.add(tablero.getTablero()[j][i]);	
 			}
 			
-			if(columna.equals(jugadasGanadoras(tablero, jugador))) return true;
+			if(iguales(columna, jugadasGanadoras(tablero, jugador))) return true;
 		}
 		return false;
 	}
 	
 	//Las jugadas ganadoras diagonales fueron divididas en dos funciones
 	private static boolean esGanadoraDiagonal(Tablero tablero, Jugador jugador) {
-		int[] diagonal=new int[3];
+		ArrayList<Integer> diagonal=new ArrayList<Integer>();
 		
 		for(int i=0; i<tablero.tamanio(); i++) {
-			diagonal[i]=tablero.getTablero()[i][i];	
+			diagonal.add(tablero.getTablero()[i][i]);	
 		}
 		
-		if(diagonal.equals(jugadasGanadoras(tablero, jugador)) && esGanadoraDiagonal2(tablero, jugador)) return true;
+		if(iguales(diagonal, jugadasGanadoras(tablero, jugador)) && esGanadoraDiagonal2(tablero, jugador)) return true;
 		return false;
 	}
 	
 	private static boolean esGanadoraDiagonal2(Tablero tablero, Jugador jugador) {
-		int[] diagonal=new int[3];
+		ArrayList<Integer> diagonal=new ArrayList<Integer>();
 		int j=tablero.tamanio();
 		
 		for(int i=0; i<tablero.tamanio(); i++) {
-			diagonal[i]=tablero.getTablero()[i][j];
+			diagonal.add(tablero.getTablero()[i][j]);
 			j--;
 		}
 		
-		if(diagonal.equals(jugadasGanadoras(tablero, jugador))) return true;
+		if(iguales(diagonal, jugadasGanadoras(tablero, jugador))) return true;
 		return false;
+	}
+	
+	private static boolean iguales(ArrayList<Integer> jugadas, int[] jugadas2) {
+		for(int i=0; i<jugadas.size(); i++) if(!jugadas.contains(jugadas2[i])) return false;
+		return true;
 	}
 	
 	private static int[] jugadasGanadoras(Tablero tablero, Jugador jugador) {
