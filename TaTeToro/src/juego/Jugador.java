@@ -1,7 +1,7 @@
 package juego;
 
 public class Jugador {
-	int numero;
+	private int numero;
 	
 	public Jugador(int numero) {
 		this.numero=numero;

@@ -3,18 +3,17 @@ package juego;
 import java.util.HashSet;
 import java.util.Set;
 
-public class JugadaGanadora {
+public class Jugada {
 
-	public boolean esJugadaGanadora(Tablero tablero, Jugador jugador) {
-		if(esJugadaGanadoraHorizontal(tablero, jugador) ||
-				esJugadaGanadoraVertical(tablero, jugador) ||
-				esJugadaGanadoraDiagonal1(tablero, jugador) ||
-				esJugadaGanadoraDiagonal2(tablero, jugador))
+	public static boolean esGanadora(Tablero tablero, Jugador jugador) {
+		if(esGanadoraHorizontal(tablero, jugador) ||
+				esGanadoraVertical(tablero, jugador) ||
+				esGanadoraDiagonal(tablero, jugador))
 			return true;
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraHorizontal(Tablero tablero, Jugador jugador) {
+	private static boolean esGanadoraHorizontal(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
 			int[] fila=new int[3];
 			
@@ -27,7 +26,7 @@ public class JugadaGanadora {
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraVertical(Tablero tablero, Jugador jugador) {
+	private static boolean esGanadoraVertical(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
 			int[] columna=new int[3];
 			
@@ -41,18 +40,18 @@ public class JugadaGanadora {
 	}
 	
 	//Las jugadas ganadoras diagonales fueron divididas en dos funciones
-	private boolean esJugadaGanadoraDiagonal1(Tablero tablero, Jugador jugador) {
+	private static boolean esGanadoraDiagonal(Tablero tablero, Jugador jugador) {
 		int[] diagonal=new int[3];
 		
 		for(int i=0; i<tablero.tamanio(); i++) {
 			diagonal[i]=tablero.getTablero()[i][i];	
 		}
 		
-		if(diagonal.equals(jugadasGanadoras(tablero, jugador))) return true;
+		if(diagonal.equals(jugadasGanadoras(tablero, jugador)) && esGanadoraDiagonal2(tablero, jugador)) return true;
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraDiagonal2(Tablero tablero, Jugador jugador) {
+	private static boolean esGanadoraDiagonal2(Tablero tablero, Jugador jugador) {
 		int[] diagonal=new int[3];
 		int j=tablero.tamanio();
 		
@@ -65,7 +64,7 @@ public class JugadaGanadora {
 		return false;
 	}
 	
-	private int[] jugadasGanadoras(Tablero tablero, Jugador jugador) {
+	private static int[] jugadasGanadoras(Tablero tablero, Jugador jugador) {
 		int[] jugadas=new int[3];
 		for(int i=0; i<tablero.getTablero().length; i++) jugadas[i]=jugador.getNumero();
 		return jugadas;

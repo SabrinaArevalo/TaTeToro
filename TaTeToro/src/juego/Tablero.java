@@ -16,6 +16,10 @@ public class Tablero {
 	public int[][] getTablero() {
 		return tablero;
 	}
+	
+	public void setJugada(Jugador jugador, int posicionFila, int posicionColumna) {
+		this.tablero[posicionFila][posicionColumna]=jugador.getNumero();
+	}
 
 	public int tamanio() {
 		return this.tablero.length;
