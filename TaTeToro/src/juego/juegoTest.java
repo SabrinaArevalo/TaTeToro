@@ -59,9 +59,9 @@ public class juegoTest {
 	public void jugadaGanadoraVertical() {
 		Tablero tablero=new Tablero();
 		Jugador jugador1=new Jugador(2);
+		tablero.setJugada(jugador1, 0, 0);
 		tablero.setJugada(jugador1, 1, 0);
 		tablero.setJugada(jugador1, 2, 0);
-		tablero.setJugada(jugador1, 3, 0);
 		assertTrue(Jugada.esGanadora(tablero, jugador1));
 	}
 	
