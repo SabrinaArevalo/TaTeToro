@@ -2,7 +2,6 @@ package interfaz;
 
 import juego.Jugador;
 import juego.Tablero;
-import juego.Turno;
 
 public class Juego {
 	Tablero tablero=new Tablero();
