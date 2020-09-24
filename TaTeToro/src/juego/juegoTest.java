@@ -2,8 +2,6 @@ package juego;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 public class juegoTest {
@@ -18,7 +16,6 @@ public class juegoTest {
 	public void ingresarJugadaTest() {
 		Tablero tablero=new Tablero();
 		Jugador jugador1=new Jugador(1);
-		Jugador jugador2=new Jugador(1);
 		tablero.setJugada(jugador1, 0, 0);
 		tablero.setJugada(jugador1, 0, 1);
 		tablero.setJugada(jugador1, 0, 2);
@@ -56,7 +53,7 @@ public class juegoTest {
 	}
 
 	@Test
-	public void jugadaGanadoraVertical() {
+	public void jugadaGanadoraVertical1() {
 		Tablero tablero=new Tablero();
 		Jugador jugador1=new Jugador(2);
 		tablero.setJugada(jugador1, 0, 0);
@@ -65,18 +62,34 @@ public class juegoTest {
 		assertTrue(Jugada.esGanadora(tablero, jugador1));
 	}
 	
+	@Test
+	public void jugadaGanadoraVertical2() {
+		Tablero tablero=new Tablero();
+		Jugador jugador1=new Jugador(2);
+		tablero.setJugada(jugador1, 1, 2);
+		tablero.setJugada(jugador1, 0, 2);
+		tablero.setJugada(jugador1, 2, 2);
+		assertTrue(Jugada.esGanadora(tablero, jugador1));
+	}
 	
+	@Test
+	public void jugadaGanadoraDiagonal1() {
+		Tablero tablero=new Tablero();
+		Jugador jugador1=new Jugador(2);
+		tablero.setJugada(jugador1, 0, 0);
+		tablero.setJugada(jugador1, 1, 1);
+		tablero.setJugada(jugador1, 2, 2);
+		assertTrue(Jugada.esGanadora(tablero, jugador1));
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void jugadaGanadoraDiagonal2() {
+		Tablero tablero=new Tablero();
+		Jugador jugador1=new Jugador(1);
+		tablero.setJugada(jugador1, 0, 2);
+		tablero.setJugada(jugador1, 1, 1);
+		tablero.setJugada(jugador1, 2, 0);
+		assertTrue(Jugada.esGanadora(tablero, jugador1));
+	}
 	
 }
