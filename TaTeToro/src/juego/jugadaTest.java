@@ -1,14 +1,15 @@
 package juego;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class tests {
+public class jugadaTest {
 
 	@Test
-	public void creacionTableroTest() {
+	public void jugadaGanadoraHorizontalTest() {
 		Tablero tablero=new Tablero();
-		assertTrue(tablero.getTablero()[0][0]==0);
+
 	}
 
 }

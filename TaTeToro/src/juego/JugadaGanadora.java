@@ -4,107 +4,71 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class JugadaGanadora {
-	@SuppressWarnings("unchecked")
-	Set<Integer>[] jugadasGanadoras=(Set<Integer>[]) new Set[8];
-	
-	//Jugadas ganadoras horizontales
-	Set<Integer> horizontal1= new HashSet<Integer>();
-	Set<Integer> horizontal2= new HashSet<Integer>();
-	Set<Integer> horizontal3= new HashSet<Integer>();
 
-	//Jugadas ganadoras verticales
-	Set<Integer> vertical1= new HashSet<Integer>();
-	Set<Integer> vertical2= new HashSet<Integer>();
-	Set<Integer> vertical3= new HashSet<Integer>();
-	
-	//Jugadas ganadoras diagonales
-	Set<Integer> diagonal1= new HashSet<Integer>();
-	Set<Integer> diagonal2= new HashSet<Integer>();
-	
-	public JugadaGanadora() {
-		horizontal1.add(9);
-		horizontal1.add(7);
-		horizontal1.add(8);
-		horizontal2.add(3);
-		horizontal2.add(1);
-		horizontal2.add(2);
-		horizontal3.add(6);
-		horizontal3.add(4);
-		horizontal3.add(5);
-		
-		vertical1.add(3);
-		vertical1.add(6);
-		vertical1.add(9);
-		vertical2.add(2);
-		vertical2.add(5);
-		vertical2.add(8);
-		
-		diagonal1.add(1);
-		diagonal1.add(5);
-		diagonal1.add(9);
-		diagonal2.add(3);
-		diagonal1.add(5);
-		diagonal1.add(7);
-		
-	}
-	
-	public boolean esJugadaGanadora(Tablero tablero) {
-		if(esJugadaGanadoraHorizontal(tablero) ||
-				esJugadaGanadoraVertical(tablero) ||
-				esJugadaGanadoraDiagonal1(tablero) ||
-				esJugadaGanadoraDiagonal2(tablero))
+	public boolean esJugadaGanadora(Tablero tablero, Jugador jugador) {
+		if(esJugadaGanadoraHorizontal(tablero, jugador) ||
+				esJugadaGanadoraVertical(tablero, jugador) ||
+				esJugadaGanadoraDiagonal1(tablero, jugador) ||
+				esJugadaGanadoraDiagonal2(tablero, jugador))
 			return true;
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraHorizontal(Tablero tablero) {
+	private boolean esJugadaGanadoraHorizontal(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
-			Set<Integer> fila=new HashSet<Integer>();
+			int[] fila=new int[3];
 			
 			for(int j=0; j<tablero.tamanio(); j++) {
-				fila.add(tablero.getTablero()[i][j]);	
+				fila[i]=tablero.getTablero()[i][j];	
 			}
 			
-			if(fila.equals(horizontal1) || fila.equals(horizontal2) || fila.equals(horizontal3)) return true;
+			if(fila.equals(jugadasGanadoras(tablero, jugador))) return true;
 		}
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraVertical(Tablero tablero) {
+	private boolean esJugadaGanadoraVertical(Tablero tablero, Jugador jugador) {
 		for(int i=0; i<tablero.tamanio(); i++) {
-			Set<Integer> fila=new HashSet<Integer>();
+			int[] columna=new int[3];
 			
 			for(int j=0; j<tablero.tamanio(); j++) {
-				fila.add(tablero.getTablero()[j][i]);	
+				columna[i]=tablero.getTablero()[j][i];	
 			}
 			
-			if(fila.equals(vertical1) || fila.equals(vertical2) || fila.equals(vertical3)) return true;
+			if(columna.equals(jugadasGanadoras(tablero, jugador))) return true;
 		}
 		return false;
 	}
 	
 	//Las jugadas ganadoras diagonales fueron divididas en dos funciones
-	private boolean esJugadaGanadoraDiagonal1(Tablero tablero) {
-		Set<Integer> fila=new HashSet<Integer>();
+	private boolean esJugadaGanadoraDiagonal1(Tablero tablero, Jugador jugador) {
+		int[] diagonal=new int[3];
 		
 		for(int i=0; i<tablero.tamanio(); i++) {
-			fila.add(tablero.getTablero()[i][i]);	
+			diagonal[i]=tablero.getTablero()[i][i];	
 		}
 		
-		if(fila.equals(diagonal1) || fila.equals(diagonal2)) return true;
+		if(diagonal.equals(jugadasGanadoras(tablero, jugador))) return true;
 		return false;
 	}
 	
-	private boolean esJugadaGanadoraDiagonal2(Tablero tablero) {
-		Set<Integer> fila=new HashSet<Integer>();
+	private boolean esJugadaGanadoraDiagonal2(Tablero tablero, Jugador jugador) {
+		int[] diagonal=new int[3];
 		int j=tablero.tamanio();
+		
 		for(int i=0; i<tablero.tamanio(); i++) {
-			fila.add(tablero.getTablero()[i][j]);
+			diagonal[i]=tablero.getTablero()[i][j];
 			j--;
 		}
 		
-		if(fila.equals(diagonal1) || fila.equals(diagonal2)) return true;
+		if(diagonal.equals(jugadasGanadoras(tablero, jugador))) return true;
 		return false;
+	}
+	
+	private int[] jugadasGanadoras(Tablero tablero, Jugador jugador) {
+		int[] jugadas=new int[3];
+		for(int i=0; i<tablero.getTablero().length; i++) jugadas[i]=jugador.getNumero();
+		return jugadas;
 	}
 
 }
