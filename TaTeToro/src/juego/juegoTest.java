@@ -16,11 +16,21 @@ public class juegoTest {
 	public void ingresarJugadaTest() {
 		Tablero tablero=new Tablero();
 		Jugador jugador1=new Jugador(1);
-		Jugador jugador2=new Jugador(2);
+		Jugador jugador2=new Jugador(1);
 		tablero.setJugada(jugador1, 0, 0);
-		tablero.setJugada(jugador2, 0, 1);
+		tablero.setJugada(jugador1, 0, 1);
+		tablero.setJugada(jugador1, 0, 2);
 		assertTrue(tablero.getTablero()[0][0]==1);
-		assertTrue(tablero.getTablero()[0][1]==2);
+		assertTrue(tablero.getTablero()[0][1]==1);
+		assertTrue(tablero.getTablero()[0][2]==1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void jugadaIlegalTest() {
+		Tablero tablero=new Tablero();
+		Jugador jugador1=new Jugador(1);
+		tablero.setJugada(jugador1, 1, 1);
+		tablero.setJugada(jugador1, 1, 1);
 	}
 	
 	@Test
@@ -32,7 +42,6 @@ public class juegoTest {
 		tablero.setJugada(jugador1, 0, 2);
 		assertTrue(Jugada.esGanadora(tablero, jugador1));
 	}
-	
 	
 
 }

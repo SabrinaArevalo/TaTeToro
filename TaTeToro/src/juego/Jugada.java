@@ -1,7 +1,6 @@
 package juego;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
 public class Jugada {
 
@@ -21,7 +20,7 @@ public class Jugada {
 				fila[i]=tablero.getTablero()[i][j];	
 			}
 			
-			if(fila.equals(jugadasGanadoras(tablero, jugador))) return true;
+			if(Arrays.equals(fila, jugadasGanadoras(tablero, jugador))) return true;
 		}
 		return false;
 	}
