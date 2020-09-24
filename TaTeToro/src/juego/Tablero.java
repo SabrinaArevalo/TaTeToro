@@ -7,16 +7,16 @@ public class Tablero {
 	//Y verificar si ganó a partir de este tablero
 	public Tablero() {
 		tablero=new int[3][3];
+		
+		for(int i=0; i<tablero.length; i++) 
+
+			for(int j=0; i<tablero[i].length; i++) tablero[i][j]=0;		
 	}
 
 	public int[][] getTablero() {
 		return tablero;
 	}
 
-	public void setTablero(int[][] tablero) {
-		this.tablero = tablero;
-	}
-	
 	public int tamanio() {
 		return this.tablero.length;
 	}
