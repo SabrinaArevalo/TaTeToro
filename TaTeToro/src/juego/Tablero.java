@@ -17,4 +17,8 @@ public class Tablero {
 		this.tablero = tablero;
 	}
 	
+	public int tamanio() {
+		return this.tablero.length;
+	}
+	
 }
