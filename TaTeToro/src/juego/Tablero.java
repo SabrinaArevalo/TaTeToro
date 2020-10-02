@@ -19,7 +19,7 @@ public class Tablero {
 	
 	public void setJugada(Jugador jugador, int posicionFila, int posicionColumna) {
 		if(this.tablero[posicionFila][posicionColumna]!=0) 
-			throw new IllegalArgumentException("La posición ["+posicionFila+"]["+posicionColumna+"] ya está ocupada");
+			throw new IllegalArgumentException("La posición ["+posicionFila+"]["+posicionColumna+"] ya esta ocupada");
 		this.tablero[posicionFila][posicionColumna]=jugador.getNumero();
 	}
 
